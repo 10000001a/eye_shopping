@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "217646530608",
+    "project_id": "eye-shopping",
+    "storage_bucket": "eye-shopping.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217646530608:android:f68e1f9e1b57e8ba1a2df5",
+        "android_client_info": {
+          "package_name": "com.example.eye_shopping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217646530608-6u8f0810pf5ii0v5b3snlp4vu1fj6osb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJJ8Y0I6ofr0Ny7utIfrN5iGHHZHwlLig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217646530608-6u8f0810pf5ii0v5b3snlp4vu1fj6osb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "217646530608-dqbh16qdjqvq36o0q9hr8be6p0f10r00.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.eyeShopping"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

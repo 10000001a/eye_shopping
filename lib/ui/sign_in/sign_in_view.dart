@@ -5,6 +5,15 @@ import '../home/home_view.dart';
 class SignInView extends StatelessWidget {
   const SignInView({super.key});
 
+  void _goToHome(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => const HomeView(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,12 +23,7 @@ class SignInView extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => const HomeView(),
-              ),
-            );
+            _goToHome(context);
           },
           child: const Text('sign in'),
         ),
