@@ -1,14 +1,14 @@
-import 'package:eye_shopping/screen/camera_view.dart';
+import 'package:eye_shopping/screen/home/home_view.dart';
 import 'package:flutter/material.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class SignInView extends StatelessWidget {
+  const SignInView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text('Sign In'),
       ),
       body: Center(
         child: ElevatedButton(
@@ -16,11 +16,11 @@ class HomeView extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => const CameraView(),
+                builder: (BuildContext context) => const HomeView(),
               ),
             );
           },
-          child: const Text('Go to camera'),
+          child: const Text('sign in'),
         ),
       ),
     );

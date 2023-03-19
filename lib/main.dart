@@ -1,4 +1,4 @@
-import 'package:eye_shopping/screen/sign_in_view.dart';
+import 'package:eye_shopping/screen/sign_in/sign_in_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
