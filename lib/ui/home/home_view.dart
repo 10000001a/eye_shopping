@@ -1,5 +1,6 @@
-import 'package:eye_shopping/screen/detection/detection_view.dart';
 import 'package:flutter/material.dart';
+
+import '../../ui/detection/detection_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

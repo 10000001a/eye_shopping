@@ -1,5 +1,6 @@
-import 'package:eye_shopping/screen/home/home_view.dart';
 import 'package:flutter/material.dart';
+
+import '../home/home_view.dart';
 
 class SignInView extends StatelessWidget {
   const SignInView({super.key});
