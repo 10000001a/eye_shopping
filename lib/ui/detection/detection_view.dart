@@ -88,6 +88,8 @@ class _DetectionViewState extends State<DetectionView>
       classThreshold: 0.5,
     );
 
+    print(result);
+
     if (result.isNotEmpty) {
       setState(() {
         yoloResults = result;
