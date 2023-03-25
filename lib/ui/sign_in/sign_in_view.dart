@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -84,6 +85,7 @@ class SignInView extends ConsumerWidget {
                 border: OutlineInputBorder(),
                 labelText: 'Password',
               ),
+              obscureText: true,
               onChanged:
                   ref.read(signInViewModelProvider.notifier).onChangePassword,
             ),
@@ -92,7 +94,7 @@ class SignInView extends ConsumerWidget {
             ),
             ElevatedButton(
               onPressed: () async {
-                ref.read(signInViewModelProvider.notifier).signIn();
+                await ref.read(signInViewModelProvider.notifier).signIn();
               },
               child: const Text('sign in'),
             ),
@@ -101,7 +103,9 @@ class SignInView extends ConsumerWidget {
             ),
             ElevatedButton(
               onPressed: () async {
-                ref.read(signInViewModelProvider.notifier).signInWithGoogle();
+                await ref
+                    .read(signInViewModelProvider.notifier)
+                    .signInWithGoogle();
               },
               child: const Text('sign in with google'),
             ),
