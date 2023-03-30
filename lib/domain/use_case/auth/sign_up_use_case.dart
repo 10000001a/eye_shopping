@@ -4,16 +4,16 @@ import '../../../data/dto/auth_dto.dart';
 import '../../../data/repository/auth_repository.dart';
 import '../../model/auth.dart';
 
-final Provider<SignInUseCase> signInUseCaseProvider = Provider<SignInUseCase>(
-  (Ref ref) => SignInUseCase(
+final Provider<SignUpUseCase> signUpUseCaseProvider = Provider<SignUpUseCase>(
+  (Ref ref) => SignUpUseCase(
     authRepository: ref.watch(authRepositoryProvider),
   ),
 );
 
-class SignInUseCase {
+class SignUpUseCase {
   final AuthRepository _authRepository;
 
-  const SignInUseCase({
+  const SignUpUseCase({
     required AuthRepository authRepository,
   }) : _authRepository = authRepository;
 
@@ -22,8 +22,8 @@ class SignInUseCase {
     required String password,
   }) async {
     try {
-      final AuthResponseDto dto = await _authRepository.signIn(
-        signInRequestDto: SignInRequestDto(
+      final AuthResponseDto dto = await _authRepository.signUp(
+        signUpRequestDto: SignUpRequestDto(
           email: email,
           password: password,
         ),

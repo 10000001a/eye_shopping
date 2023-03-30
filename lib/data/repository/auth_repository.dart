@@ -14,23 +14,43 @@ class AuthRepository {
     required AuthApi authApi,
   }) : _authApi = authApi;
 
-  Future<SignInResponseDto> signIn({
+  Future<AuthResponseDto> signUp({
+    required SignUpRequestDto signUpRequestDto,
+  }) async {
+    final Map<String, dynamic> data = await _authApi.signUp(
+      signUpRequestDto: signUpRequestDto,
+    );
+
+    return AuthResponseDto.fromMap(data);
+  }
+
+  Future<AuthResponseDto> signIn({
     required SignInRequestDto signInRequestDto,
   }) async {
-    final dynamic data = await _authApi.signIn(
+    final Map<String, dynamic> data = await _authApi.signIn(
       signInRequestDto: signInRequestDto,
     );
 
-    return SignInResponseDto.fromMap(data);
+    return AuthResponseDto.fromMap(data);
   }
 
-  Future<SignInResponseDto> signInWithGoogle({
+  Future<AuthResponseDto> signInWithGoogle({
     required SignInWithGoogleRequestDto signInWithGoogleRequestDto,
   }) async {
     final dynamic data = await _authApi.signInWithGoogle(
       signInWithGoogleRequestDto: signInWithGoogleRequestDto,
     );
 
-    return SignInResponseDto.fromMap(data);
+    return AuthResponseDto.fromMap(data);
+  }
+
+  Future<AuthResponseDto> refresh({
+    required SignInRequestDto signInRequestDto,
+  }) async {
+    final Map<String, dynamic> data = await _authApi.refresh(
+      signInRequestDto: signInRequestDto,
+    );
+
+    return AuthResponseDto.fromMap(data);
   }
 }

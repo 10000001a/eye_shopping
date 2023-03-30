@@ -18,15 +18,18 @@ class SignInWithGoogleUseCase {
     required AuthRepository authRepository,
   }) : _authRepository = authRepository;
 
-  Future<Token> call() async {
+  Future<TokenModel> call() async {
     try {
-      final SignInResponseDto dto = await _authRepository.signInWithGoogle(
+      final AuthResponseDto dto = await _authRepository.signInWithGoogle(
         signInWithGoogleRequestDto: const SignInWithGoogleRequestDto(
           token: '',
         ),
       );
 
-      return dto.accessToken;
+      return TokenModel(
+        accessToken: dto.accessToken,
+        refreshToken: dto.refreshToken,
+      );
     } on Exception {
       rethrow;
     }

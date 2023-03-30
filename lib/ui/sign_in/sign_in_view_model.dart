@@ -5,11 +5,13 @@ import '../../domain/model/auth.dart';
 import '../../domain/service/auth_service.dart';
 import '../../domain/use_case/auth/sign_in_use_case.dart';
 import '../../domain/use_case/auth/sign_in_with_google_use_case.dart';
+import '../../domain/use_case/auth/sign_up_use_case.dart';
 
 StateNotifierProvider<SignInViewModel, SignInState> signInViewModelProvider =
     StateNotifierProvider<SignInViewModel, SignInState>(
   (Ref ref) => SignInViewModel(
     authService: ref.watch(authServiceProvider.notifier),
+    signUpUseCase: ref.watch(signUpUseCaseProvider),
     signInUseCase: ref.watch(signInUseCaseProvider),
     signInWithGoogleUseCase: ref.watch(signInWithGoogleUseCaseProvider),
     state: const SignInState.init(),
@@ -47,15 +49,19 @@ class SignInState extends Equatable {
 
 class SignInViewModel extends StateNotifier<SignInState> {
   final AuthService _authService;
+  final SignUpUseCase _signUpUseCase;
   final SignInUseCase _signInUseCase;
+
   final SignInWithGoogleUseCase _signInWithGoogleUseCase;
 
   SignInViewModel({
     required AuthService authService,
+    required SignUpUseCase signUpUseCase,
     required SignInUseCase signInUseCase,
     required SignInWithGoogleUseCase signInWithGoogleUseCase,
     required SignInState state,
   })  : _authService = authService,
+        _signUpUseCase = signUpUseCase,
         _signInUseCase = signInUseCase,
         _signInWithGoogleUseCase = signInWithGoogleUseCase,
         super(state);
@@ -68,11 +74,31 @@ class SignInViewModel extends StateNotifier<SignInState> {
     state = state.copyWith(password: password);
   }
 
+  Future<void> signUp() async {
+    try {
+      final TokenModel tokenModel = await _signUpUseCase.call(
+        // email: state.email,
+        // password: state.password,
+        email: 'test@test.com',
+        password: 'test',
+      );
+
+      await _authService.success(tokenModel: tokenModel);
+    } on Exception {
+      _authService.fail();
+    }
+  }
+
   Future<void> signIn() async {
     try {
-      await _signInUseCase.call();
+      final TokenModel tokenModel = await _signInUseCase.call(
+        // email: state.email,
+        // password: state.password,
+        email: 'test@test.com',
+        password: 'test',
+      );
 
-      _authService.success();
+      await _authService.success(tokenModel: tokenModel);
     } on Exception {
       _authService.fail();
     }
@@ -80,9 +106,9 @@ class SignInViewModel extends StateNotifier<SignInState> {
 
   Future<void> signInWithGoogle() async {
     try {
-      await _signInWithGoogleUseCase.call();
+      final TokenModel tokenModel = await _signInWithGoogleUseCase.call();
 
-      _authService.success();
+      await _authService.success(tokenModel: tokenModel);
     } on Exception {
       _authService.fail();
     }

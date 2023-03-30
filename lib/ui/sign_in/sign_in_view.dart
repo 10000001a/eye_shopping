@@ -94,9 +94,9 @@ class SignInView extends ConsumerWidget {
             ),
             ElevatedButton(
               onPressed: () async {
-                await ref.read(signInViewModelProvider.notifier).signIn();
+                await ref.read(signInViewModelProvider.notifier).signUp();
               },
-              child: const Text('sign in'),
+              child: const Text('sign up'),
             ),
             const SizedBox(
               height: 8,
@@ -108,6 +108,15 @@ class SignInView extends ConsumerWidget {
                     .signInWithGoogle();
               },
               child: const Text('sign in with google'),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                await ref.read(signInViewModelProvider.notifier).signIn();
+              },
+              child: const Text('sign in'),
             ),
           ],
         ),

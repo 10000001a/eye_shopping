@@ -1,5 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../model/auth.dart';
 
 StateNotifierProvider<AuthService, AuthState> authServiceProvider =
     StateNotifierProvider<AuthService, AuthState>(
@@ -35,9 +38,28 @@ class AuthState extends Equatable {
 }
 
 class AuthService extends StateNotifier<AuthState> {
-  AuthService(super.state);
+  late final SharedPreferences _sharedPreferences;
 
-  void success() {
+  AuthService(super.state) {
+    init();
+  }
+
+  Future<void> init() async {
+    _sharedPreferences = await SharedPreferences.getInstance();
+  }
+
+  Future<void> success({
+    required TokenModel tokenModel,
+  }) async {
+    await _sharedPreferences.setString(
+      'access_token',
+      tokenModel.accessToken,
+    );
+    await _sharedPreferences.setString(
+      'refresh_token',
+      tokenModel.refreshToken,
+    );
+
     state = state.copyWith(status: AuthStatus.authenticated);
   }
 

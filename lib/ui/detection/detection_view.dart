@@ -201,7 +201,6 @@ class _DetectionViewState extends State<DetectionView>
                   ...displayBoxesAroundRecognizedObjects(
                     MediaQuery.of(context).size,
                   ),
-                  // ...yoloResults2.map((e) => TabBox(yoloData: e)),
                   if (yoloResults2.isNotEmpty)
                     Text(
                       getYoloResultString(),
@@ -269,36 +268,36 @@ class YoloResult extends Equatable {
   List<Object> get props => <Object>[box, tag];
 }
 
-class TabBox extends StatelessWidget {
-  final YoloResult yoloData;
-  const TabBox({required this.yoloData, super.key});
+// class TabBox extends StatelessWidget {
+//   final YoloResult yoloData;
+//   const TabBox({required this.yoloData, super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    final double factorX = MediaQuery.of(context).size.width / 1280 * 2.3;
-    final double factorY =
-        (MediaQuery.of(context).size.width - 100) / 720 * 2.6;
+//   @override
+//   Widget build(BuildContext context) {
+//     final double factorX = MediaQuery.of(context).size.width / 1280 * 2.3;
+//     final double factorY =
+//         (MediaQuery.of(context).size.width - 100) / 720 * 2.6;
 
-    return Positioned(
-      top: yoloData.top * factorY,
-      left: yoloData.left * factorX,
-      width: (yoloData.right - yoloData.left) * factorX,
-      height: (yoloData.bottom - yoloData.top) * factorY,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-          border: Border.all(color: Colors.pink, width: 2.0),
-        ),
-        child: Text(
-          '${yoloData.tag} '
-          '${(yoloData.confidence * 100).toStringAsFixed(0)}%',
-          style: TextStyle(
-            background: Paint()..color = const Color.fromARGB(255, 50, 233, 30),
-            color: Colors.white,
-            fontSize: 18.0,
-          ),
-        ),
-      ),
-    );
-  }
-}
+//     return Positioned(
+//       top: yoloData.top * factorY,
+//       left: yoloData.left * factorX,
+//       width: (yoloData.right - yoloData.left) * factorX,
+//       height: (yoloData.bottom - yoloData.top) * factorY,
+//       child: DecoratedBox(
+//         decoration: BoxDecoration(
+//           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+//           border: Border.all(color: Colors.pink, width: 2.0),
+//         ),
+//         child: Text(
+//           '${yoloData.tag} '
+//           '${(yoloData.confidence * 100).toStringAsFixed(0)}%',
+//           style: TextStyle(
+//             background: Paint()..color = const Color.fromARGB(255, 50, 233, 30),
+//             color: Colors.white,
+//             fontSize: 18.0,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

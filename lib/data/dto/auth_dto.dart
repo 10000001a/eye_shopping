@@ -1,3 +1,18 @@
+class SignUpRequestDto {
+  final String email;
+  final String password;
+
+  const SignUpRequestDto({
+    required this.email,
+    required this.password,
+  });
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+        'email': email,
+        'password': password,
+      };
+}
+
 class SignInRequestDto {
   final String email;
   final String password;
@@ -25,15 +40,17 @@ class SignInWithGoogleRequestDto {
       };
 }
 
-class SignInResponseDto {
+class AuthResponseDto {
   final String accessToken;
+  final String refreshToken;
 
-  const SignInResponseDto({
+  const AuthResponseDto({
     required this.accessToken,
+    required this.refreshToken,
   });
 
-  factory SignInResponseDto.fromMap(Map<String, dynamic> map) =>
-      SignInResponseDto(
+  factory AuthResponseDto.fromMap(Map<String, dynamic> map) => AuthResponseDto(
         accessToken: map['accessToken'] as String,
+        refreshToken: map['refreshToken'] as String,
       );
 }
